@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('permissions', function (Blueprint $table) {
-            $table->date("permission_date")->after('description');
+            $table->date("permission_date")->after('deskripsi');
         });
     }
 

@@ -1,9 +1,5 @@
 <div>
-    @if ($holiday)
-    <div class="alert alert-success">
-        <small class="fw-bold">Hari ini adalah hari libur.</small>
-    </div>
-    @else
+    
 
     {{-- jika tidak menggunakan qrcode (button) dan karyawan saat ini tidak menekan tombol izin --}}
     @if ($attendance->data->is_using_qrcode && !$data['is_there_permission'])
@@ -56,7 +52,6 @@
     </div>
     @endif
 
-    @endif
 
     <div class="modal fade" id="qrcode-scanner-modal" tabindex="-1">
         <div class="modal-dialog">

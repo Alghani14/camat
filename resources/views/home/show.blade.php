@@ -22,7 +22,7 @@
             </div>
 
             @if (!$attendance->data->is_using_qrcode)
-            <livewire:presence-form :attendance="$attendance" :data="$data" :holiday="$holiday">
+            <livewire:presence-form :attendance="$attendance" :data="$data" >
                 @else
                 @include('home.partials.qrcode-presence')
                 @endif

@@ -17,8 +17,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('attendance_id')->constrained()->cascadeOnDelete();
-            $table->string('title');
-            $table->string('description', 500);
+            $table->string('judul');
+            $table->string('deskripsi', 500);
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->string('total_izin');
+            $table->string('image');
             $table->timestamps();
         });
     }

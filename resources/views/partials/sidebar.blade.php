@@ -24,13 +24,6 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('holidays.*') ? 'active' : '' }}"
-                    href="{{ route('holidays.index') }}">
-                    <span data-feather="calendar" class="align-text-bottom"></span>
-                    Hari Libur
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('attendances.*') ? 'active' : '' }}"
                     href="{{ route('attendances.index') }}">
                     <span data-feather="clipboard" class="align-text-bottom"></span>

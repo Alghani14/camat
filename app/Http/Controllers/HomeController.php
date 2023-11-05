@@ -50,9 +50,7 @@ class HomeController extends Controller
             'is_permission_accepted' => $isTherePermission?->is_accepted ?? false
         ];
 
-        $holiday = $attendance->data->is_holiday_today ? Holiday::query()
-            ->where('holiday_date', now()->toDateString())
-            ->first() : false;
+        
 
         $history = Presence::query()
             ->where('user_id', auth()->user()->id)
@@ -73,7 +71,6 @@ class HomeController extends Controller
             "title" => "Informasi Absensi Kehadiran",
             "attendance" => $attendance,
             "data" => $data,
-            "holiday" => $holiday,
             'history' => $history,
             'priodDate' => $priodDate
         ]);
