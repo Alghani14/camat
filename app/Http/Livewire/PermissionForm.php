@@ -7,7 +7,6 @@ use App\Models\Permission;
 use Livewire\Component;
 use Illuminate\Support\Facades\Storage;
 
-
 class PermissionForm extends Component
 {
     use WithFileUploads;
@@ -18,9 +17,9 @@ class PermissionForm extends Component
     protected $rules = [
         'permission.judul' => 'required|string|min:6',
         'permission.deskripsi' => 'required|string|max:500',
-        'permission.image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Menambahkan validasi untuk gambar (maksimum 2MB)
+        'permission.image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'permission.start_date' => 'required|date',
-        'permission.end_date' => 'required|date|after:permission.start_date', // Pastikan tanggal akhir setelah tanggal awal
+        'permission.end_date' => 'required|date|after:permission.start_date',
         'permission.total_izin' => 'required|string|max:500',
     ];
 

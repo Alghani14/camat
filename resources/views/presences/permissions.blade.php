@@ -117,9 +117,9 @@
                 <ul>
                     <li>Judul Izin : <span id="permission-judul">{{ $permission->judul }}</span></li>
                     <li>Keterangan Izin : <p id="permission-deskripsi">{{ $permission->deskripsi }}</p></li>
-                    <li>Bukti : <a href="{{ asset('storage/' . $permission->image) }}" download>
-                    <img src="{{ asset('storage/' . $permission->image) }}" style="width:150px; height:150px;">
-                    </a></li>
+                    <li>Bukti : <a href="{{ asset('images/' . $permission->image) }}" download>
+    <img src="{{ asset('images/' . $permission->image) }}" style="width:150px; height:150px;">
+</a></li>
 
                     <li>Tanggal Awal : <span id="permission-start_date">{{ $permission->start_date }}</span></li>
                     <li>Tanggal Akhir : <span id="permission-end_date">{{ $permission->end_date }}</span></li>

@@ -38,8 +38,8 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => public_path('images'), // Mengubah root ke direktori public/images
+            'url' => env('APP_URL').'/images', // URL yang akan digunakan untuk akses ke gambar
             'visibility' => 'public',
             'throw' => false,
         ],
