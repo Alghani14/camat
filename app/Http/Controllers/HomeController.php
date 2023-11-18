@@ -6,6 +6,7 @@ use App\Models\Attendance;
 use App\Models\Holiday;
 use App\Models\Permission;
 use App\Models\Presence;
+use App\Models\Aktivitas;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 
@@ -148,5 +149,10 @@ class HomeController extends Controller
             "success" => true,
             "message" => "Atas nama '" . auth()->user()->name . "' berhasil melakukan absensi pulang."
         ]);
+    }
+    public function aktivitas()
+    {
+        $aktivitas = Aktivitas::all(); // Sesuaikan dengan cara Anda menarik data aktivitas
+        return view('home.absen', compact('aktivitas'));
     }
 }

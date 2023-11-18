@@ -11,7 +11,7 @@ class PresenceForm extends Component
     public Attendance $attendance;
     public $holiday;
     public $data;
-
+   
     public function mount(Attendance $attendance)
     {
         $this->attendance = $attendance;
@@ -21,7 +21,7 @@ class PresenceForm extends Component
 
     public function sendEnterPresence()
     {
-        if ($this->attendance->data->is_start && !$this->attendance->data->is_using_qrcode) { // sama (harus) dengan view
+        if ($this->attendance->data->is_start && !$this->attendance->data->is_using_qrcode) {
             Presence::create([
                 "user_id" => auth()->user()->id,
                 "attendance_id" => $this->attendance->id,
@@ -35,14 +35,17 @@ class PresenceForm extends Component
             $this->data['is_not_out_yet'] = true;
 
             return $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => "Kehadiran atas nama '" . auth()->user()->name . "' berhasil dikirim."]);
+        } else {
+            return $this->dispatchBrowserEvent('showToast', ['success' => false, 'message' => "Tidak dapat melakukan absensi masuk saat ini."]);
         }
     }
 
     public function sendOutPresence()
     {
         // jika absensi sudah jam pulang (is_end) dan tidak menggunakan qrcode (kebalikan)
-        if (!$this->attendance->data->is_end && $this->attendance->data->is_using_qrcode) // sama (harus) dengan view
-            return false;
+        if (!$this->attendance->data->is_end && $this->attendance->data->is_using_qrcode) {
+            return $this->dispatchBrowserEvent('showToast', ['success' => false, 'message' => "Tidak dapat melakukan absensi pulang saat ini."]);
+        }
 
         $presence = Presence::query()
             ->where('user_id', auth()->user()->id)
@@ -51,8 +54,9 @@ class PresenceForm extends Component
             ->where('presence_out_time', null)
             ->first();
 
-        if (!$presence) // hanya untuk sekedar keamanan (kemungkinan)
-            return $this->dispatchBrowserEvent('showToast', ['success' => false, 'message' => "Terjadi masalah pada saat melakukan absensi."]);
+        if (!$presence) {
+            return $this->dispatchBrowserEvent('showToast', ['success' => false, 'message' => "Tidak ditemukan catatan kehadiran yang sesuai."]);
+        }
 
         // untuk refresh if statement
         $this->data['is_not_out_yet'] = false;
@@ -60,6 +64,14 @@ class PresenceForm extends Component
         return $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => "Atas nama '" . auth()->user()->name . "' berhasil melakukan absensi pulang."]);
     }
 
+    public function selectActivity()
+    {
+        // Lakukan logika pemilihan aktivitas di sini
+        // Misalnya, simpan ke database atau lakukan tindakan lainnya sesuai kebutuhan
+
+        // Setelah berhasil memilih aktivitas, ubah nilai $activitySelected menjadi true
+        $this->activitySelected = true;
+    }
     public function render()
     {
         return view('livewire.presence-form');

@@ -8,6 +8,8 @@ use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PresenceController;
+use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\AktivitasController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -53,6 +55,8 @@ Route::middleware('auth')->group(function () {
         // employees permissions
 
         Route::get('/presences/{attendance}/permissions', [PresenceController::class, 'permissions'])->name('presences.permissions');
+        Route::resource('/kegiatan', KegiatanController::class, ['only' => ['index','create']]);
+        Route::resource('aktivitas', AktivitasController::class, ['only' => ['index','create']]);
     });
 
     Route::middleware('role:user')->name('home.')->group(function () {
@@ -63,6 +67,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/absensi/{attendance}', [HomeController::class, 'show'])->name('show');
         Route::get('/absensi/{attendance}/permission', [HomeController::class, 'permission'])->name('permission');
+        Route::get('/absen', [HomeController::class, 'aktivitas'])->name('absen');
+
     });
 
     Route::delete('/logout', [AuthController::class, 'logout'])->name('auth.logout');

@@ -37,6 +37,22 @@
                     Data Kehadiran
                 </a>
             </li>
+            <li class="nav-item">
+            <a class="nav-link"
+                    href="{{ route('kegiatan.index') }}">
+                    <span data-feather="clipboard" class="align-text-bottom"></span>
+                    Kegiatan
+                </a>
+            
+            </li>
+            <li class="nav-item">
+            <a class="nav-link"
+                    href="{{ route('aktivitas.index') }}">
+                    <span data-feather="clipboard" class="align-text-bottom"></span>
+                    Aktivitas
+                </a>
+            
+            </li>
             @endif
         </ul>
 

@@ -59,6 +59,11 @@ class User extends Authenticatable
         return $this->belongsTo(Position::class);
     }
 
+    public function aktivitas()
+    {
+        return $this->belongsTo(Aktivitas::class);
+    }
+
     public function scopeOnlyEmployees($query)
     {
         return $query->where('role_id', self::USER_ROLE_ID);
